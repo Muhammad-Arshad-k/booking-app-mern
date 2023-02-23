@@ -49,7 +49,7 @@ export const createNewHotel =   async(req,res,next)=>{
      const minimum = parseInt(min)
      const maximum = parseInt(max)
      try {
-      const hotels = await Hotel.find({...others,cheapestPrice:{$gt:minimum,$lt:maximum}}).limit(count);
+      const hotels = await Hotel.find({...others,cheapestPrice:{$gt:minimum||10,$lt:maximum||10000}}).limit(count);
       console.log(hotels)
       res.status(200).json(hotels);
      } catch (err) {

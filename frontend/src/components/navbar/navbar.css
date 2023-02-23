@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Montserrat:wght@100;500&display=swap');
 .navbar{
   height: 50px;
   background-image: url("https://cdn.pixabay.com/photo/2016/11/29/04/17/bonfire-1867275_960_720.jpg");
@@ -5,7 +6,11 @@
   justify-content: center;
   padding:5px 20px;
 }
-
+small{
+  color: #f3f3f3;
+  font-family: 'Dancing Script', cursive;
+  font-size: 15px;
+}
 .navContainer{
   width: 100%;
   max-width: 1024px;
@@ -17,6 +22,10 @@
 
 .logo{
   font-weight: 500;
+}
+span.logo h3 {
+  font-family: 'Dancing Script', cursive;
+  color: rgb(161, 192, 216);
 }
 
 .navButton{
