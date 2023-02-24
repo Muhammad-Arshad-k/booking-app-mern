@@ -13,16 +13,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { SearchContext } from "../../context/SearchContext";
 
 const Hotel = () => {
   const location = useLocation() 
   const id = location.pathname.split("/")[2];
-
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
   const {data,loading,error} = useFetch(`/hotels/find/${id}`)
 
+  const {dates}= useContext(SearchContext)
+  
+  // con
   
   const handleOpen = (i) => {
     setSlideNumber(i);
