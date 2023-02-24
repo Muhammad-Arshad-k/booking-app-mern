@@ -3,8 +3,8 @@ import "./featured.css";
 
 const Featured = () => {
 
-const { data,loading,error}  = useFetch("/hotels/countByCity?cities=wayanad,London,Calicut")
-console.log(data)
+const { data,loading,error}  = useFetch("/hotels/countByCity?cities=wayanad,kashmir,calicut");
+
 return (
     <div className="featured">
       {loading?("loading..... please wait"
@@ -22,14 +22,14 @@ return (
         </div>
       </div>
       
-      <div className="featuredItem"> 
+      <div className="featuredItem2"> 
         <img
           src="https://images.pexels.com/photos/1268871/pexels-photo-1268871.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
           alt=""
           className="featuredImg"
         />
         <div className="featuredTitles">
-          <h1>London</h1>
+          <h1>Kashmir</h1>
           <h2>{data[1]} properties</h2>
         </div>
       </div>

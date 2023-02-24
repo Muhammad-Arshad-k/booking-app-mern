@@ -25,15 +25,17 @@ small{
 }
 span.logo h3 {
   font-family: 'Dancing Script', cursive;
-  color: rgb(161, 192, 216);
 }
 
 .navButton{
   margin-left: 20px;
   border: none;
   padding: 5px 10px;
-  cursor: pointer;
-  background-color: #8faacf;
+  cursor: pointer; 
+  background-color: transparent;
   color: #ffffff;
   border-radius: 15px;
+}
+.navButton:hover{
+  background-color: #183a6d;
 }

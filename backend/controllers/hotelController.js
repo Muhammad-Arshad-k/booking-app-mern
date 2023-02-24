@@ -49,13 +49,15 @@ export const createNewHotel =   async(req,res,next)=>{
      const minimum = parseInt(min)
      const maximum = parseInt(max)
      try {
-      const hotels = await Hotel.find({...others,cheapestPrice:{$gt:minimum||10,$lt:maximum||10000}}).limit(count);
+      const hotels = await Hotel.find({...others,cheapestPrice:{$gt:minimum||1,$lt:maximum||10000}}).limit(count);
       console.log(hotels)
       res.status(200).json(hotels);
      } catch (err) {
          next(err)
      }
  }
+
+ 
  export const countByCity = async(req,res,next)=>{
     const cities = req.query.cities.split(",")
      try {
@@ -68,6 +70,8 @@ export const createNewHotel =   async(req,res,next)=>{
          next(err)
      }
  }
+
+
  export const countByCategory= async(req,res,next)=>{
      try {
          const hotelCount = await Hotel.countDocuments({category:"hotel"});
@@ -76,7 +80,6 @@ export const createNewHotel =   async(req,res,next)=>{
          const villaCount  = await Hotel.countDocuments({category:"villa"});
          const cabinCount  = await Hotel.countDocuments({category:"cabin"});
         
-     
       res.status(200).json([
         {category:"hotels",count:hotelCount},
         {category:"apartments",count:apartmentCount},

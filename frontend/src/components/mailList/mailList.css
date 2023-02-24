@@ -1,30 +1,64 @@
-.mail{
-  width: 100%;
-  margin-top: 50px;
-  background-color: #003580;
-  color: white;
+.mail {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  margin: 20px 20px;
+}
+
+.mailTitle {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color:#4c5baf;
+}
+
+.mailDesc {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.mailInputContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.mailInputContainer>input{
-  width: 300px;
-  height: 30px;
+.mailInputContainer input {
+  width: 100%;
+  max-width: 400px;
   padding: 10px;
-  border: none;
+  font-size: 16px;
   margin-right: 10px;
-  border-radius: 5px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
-.mailInputContainer>button{
-  height: 50px;
-  background-color: #0071c2;
-  color: white;
-  font-weight: 500;
+.mailInputContainer button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4c5baf;
+  border-radius: 20px;
+  color: #fff;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
+}
+
+
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+  .mailTitle {
+    font-size: 24px;
+  }
+
+  .mailDesc {
+    font-size: 14px;
+  }
+
+  .mailInputContainer input {
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }

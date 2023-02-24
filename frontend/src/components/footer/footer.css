@@ -1,23 +1,54 @@
 .footer{
   width: 100%;
-  width: 1024px;
   font-size: 12px;
+  padding: 0 20px;
+  background-image: linear-gradient(180deg, rgb(0, 0, 0), rgb(6, 6, 6));
+  padding: 20px;
 }
 
-.fLists{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 50px;
-}
 
-.fList{
-  list-style: none;
-  padding: 0;
-}
 
 .fListItem{
   margin-bottom: 10px;
   color: #003580;
   cursor: pointer;
+  margin-bottom: 10px;
+  list-style: none;
 }
+footer {
+  background-color: #110606;
+  padding: 20px;
+}
+
+.fLists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  margin: 10;
+  padding: 10;
+}
+
+
+.fText {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Media queries for responsive layout */
+@media only screen and (max-width: 450px) {
+  .fLists {
+    justify-content: space-between;
+  }
+  .fList {
+    margin-bottom: 20px;
+    width: 50%;
+  }
+
+}
+/* 
+@media only screen and (max-width: 480px) {
+  .fList {
+    width: 50%;
+  }
+} */
