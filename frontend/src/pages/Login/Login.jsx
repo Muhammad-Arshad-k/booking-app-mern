@@ -1,23 +1,91 @@
-import './login.css'
+
+import { useContext } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import "./login.css";
+import axios from "../../../src/axios";
+import { SmartButton } from "@mui/icons-material";
 
 function Login() {
+  const [credentials, setCredetials] = useState({
+    email: undefined,
+    password: undefined,
+  });
+
+  const { loading, error, dispatch, email } = useContext(AuthContext);
+
+  const handleChange = (e) => {
+    const newName = e.target.name;
+    const newPassword = e.target.value;
+    setCredetials((prev) => ({ ...prev, [newName]: newPassword }));
+  };
+  const handleClick=async e=>{
+    e.preventDefault()
+    dispatch({type:"LOGIN_START"});
+    try{
+      const res = await axios.post("/auth/login",credentials);
+      dispatch({type:"LOGIN_SUCCESS",payload:res.data});
+    }catch(err){
+      dispatch({type:"LOGIN_FAILURE",payload:err.response.data})
+    }
+  };
+  console.log(error)
+
   return (
-    <div className='login'>
-       <form action="" className='form'>
-        <div >
-       <div className='input-container'>
-       <label htmlFor="">Username</label><br />
-       <input type="text" value="" />
-       </div>
-       <div lassName='input-container'>
-       <label htmlFor="">Password</label><br />
-       <input type="text" />
-       </div>
-       <button >submit</button>
-       </div>
-       </form>
+    <div className=" bg-custom  flex justify-center items-center h-screen">
+      <div className="bg-white rounded-lg p-10 ">
+        <h1 className="text-3xl font-bold mb-4 text-center text-[#115e59]">Login</h1>
+        <form>
+          <div className="mb-4">
+            <label className="block font-bold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              className="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="email"
+              type="email"
+              name="email"
+              placeholder="email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block font-bold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <button
+              className="bg-[#155e75] w- hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-3 mb-3"
+              type="button"
+              onClick={handleClick}
+            >
+              Sign In
+            </button>
+            {error && <p className="text-[#be123c] text-center m-2">{error.message}</p>}
+            <h1 className=" " href="#">
+              Forgot Password?
+            </h1>
+          </div>
+        </form>
+        <div className="m-5 ">
+          dont have an account?
+          <Link className="text-[#1d4ed8]" href="">
+            register
+          </Link>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
