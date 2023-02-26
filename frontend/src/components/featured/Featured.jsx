@@ -22,7 +22,7 @@ return (
         </div>
       </div>
       
-      <div className="featuredItem2"> 
+      <div className="featuredItem"> 
         <img
           src="https://images.pexels.com/photos/1268871/pexels-photo-1268871.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
           alt=""

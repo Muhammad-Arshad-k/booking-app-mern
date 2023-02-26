@@ -1,7 +1,11 @@
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import {AppBar} from '@mui/material';
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
   return (
     <div className="navbar">
       <div className="navContainer">   
@@ -12,8 +16,8 @@ const Navbar = () => {
         </Link>
 
         <div className="navItems">
-          <button className="navButton">Register</button>
-          <button className="navButton">Login</button>
+          <button className="navButton" onClick={()=>navigate("/register")}>Register</button>
+          <button className="navButton" onClick={()=>navigate("/login")}>Login</button>
         </div>
       </div>
     </div>

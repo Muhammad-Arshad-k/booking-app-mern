@@ -48,6 +48,7 @@ const Header = ({ type }) => {
   const {dispatch}  = useContext(SearchContext)
 
   const handleSearch = () => {
+    console.log(dates)
     dispatch({type:"NEW_SEARCH",payload:{destination,dates,options}})
     navigate("/hotels", { state: { destination, dates, options } });
   };
@@ -99,6 +100,7 @@ const Header = ({ type }) => {
                   placeholder="Where are you going?"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
+                  required
                 />
               </div>
               <div className="headerSearchItem">

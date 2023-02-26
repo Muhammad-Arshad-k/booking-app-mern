@@ -2,7 +2,7 @@
   width: 100%;
   font-size: 12px;
   padding: 0 20px;
-  background-image: linear-gradient(180deg, rgb(0, 0, 0), rgb(6, 6, 6));
+  background-image: linear-gradient(180deg, rgb(0, 0, 0), rgb(35, 42, 145));  
   padding: 20px;
 }
 
@@ -10,7 +10,7 @@
 
 .fListItem{
   margin-bottom: 10px;
-  color: #003580;
+  color:white;
   cursor: pointer;
   margin-bottom: 10px;
   list-style: none;
