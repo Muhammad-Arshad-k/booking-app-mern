@@ -1,4 +1,5 @@
 import Hotel from "../models/Hotel.js";
+import Room  from "../models/Room.js"
 import { createError } from "../utils/error.js";
 
 export const createNewHotel =   async(req,res,next)=>{
@@ -50,7 +51,6 @@ export const createNewHotel =   async(req,res,next)=>{
      const maximum = parseInt(max)
      try {
       const hotels = await Hotel.find({...others,cheapestPrice:{$gt:minimum||1,$lt:maximum||10000}}).limit(count);
-      console.log(hotels)
       res.status(200).json(hotels);
      } catch (err) {
          next(err)
@@ -90,4 +90,18 @@ export const createNewHotel =   async(req,res,next)=>{
      } catch (err) {
          next(err)
      }
+ }
+
+ export const getHotelRooms = async(req,res,next) =>{
+    const hotelId  = req.params.id;
+    try {
+       const hotel=   await Hotel.findById(hotelId)
+       const list = await Promise.all(hotel.rooms.map(room=>{
+        return Room.findById(room)
+       }))
+       res.status(200).json(list);
+    } catch (error) {
+        next(error)
+    }
+
  }

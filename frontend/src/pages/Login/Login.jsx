@@ -1,7 +1,7 @@
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 import axios from "../../../src/axios";
@@ -12,8 +12,16 @@ function Login() {
     email: undefined,
     password: undefined,
   });
+  const navigate = useNavigate();
+  useEffect(() => {
+    let isAuth = JSON.parse(localStorage.getItem('user'));
+    if(isAuth && isAuth !== null) {
+        navigate("/");
+    }
+ }, []);
 
-  const { loading, error, dispatch, email } = useContext(AuthContext);
+  const { loading, error, dispatch } = useContext(AuthContext);
+  
 
   const handleChange = (e) => {
     const newName = e.target.name;
@@ -26,11 +34,12 @@ function Login() {
     try{
       const res = await axios.post("/auth/login",credentials);
       dispatch({type:"LOGIN_SUCCESS",payload:res.data});
+      navigate("/")
     }catch(err){
       dispatch({type:"LOGIN_FAILURE",payload:err.response.data})
     }
   };
-  console.log(error)
+
 
   return (
     <div className=" bg-custom  flex justify-center items-center h-screen">
@@ -54,7 +63,7 @@ function Login() {
             <label className="block font-bold mb-2" htmlFor="password">
               Password
             </label>
-            <input
+            <input 
               className="appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
@@ -68,6 +77,7 @@ function Login() {
               className="bg-[#155e75] w- hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mt-3 mb-3"
               type="button"
               onClick={handleClick}
+              disabled={loading}
             >
               Sign In
             </button>
@@ -79,7 +89,7 @@ function Login() {
         </form>
         <div className="m-5 ">
           dont have an account?
-          <Link className="text-[#1d4ed8]" href="">
+          <Link className="text-[#1d4ed8]" to="/register">
             register
           </Link>
         </div>

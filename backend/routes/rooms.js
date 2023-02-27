@@ -15,4 +15,4 @@ router.delete("/:id/:hotelid",verifyAdmin,deleteRoom)
  //get all Room
  router.get("/",getAllRooms);
 
-export default router ;  
+export default router ;     
