@@ -12,7 +12,6 @@ function Login() {
     email: undefined,
     password: undefined,
   });
-  const navigate = useNavigate();
   useEffect(() => {
     let isAuth = JSON.parse(localStorage.getItem('user'));
     if(isAuth && isAuth !== null) {
@@ -21,7 +20,7 @@ function Login() {
  }, []);
 
   const { loading, error, dispatch } = useContext(AuthContext);
-  
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const newName = e.target.name;
@@ -33,6 +32,7 @@ function Login() {
     dispatch({type:"LOGIN_START"});
     try{
       const res = await axios.post("/auth/login",credentials);
+      console.log(res.data)
       dispatch({type:"LOGIN_SUCCESS",payload:res.data});
       navigate("/")
     }catch(err){

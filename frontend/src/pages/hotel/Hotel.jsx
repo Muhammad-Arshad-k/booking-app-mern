@@ -19,10 +19,10 @@ const Hotel = () => {
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-
   const [openModal,setOpenModal] = useState(false)
 
-  const {data,loading,error} = useFetch(`/hotels/find/${id}`)
+  const {data,loading,error} = useFetch(`/hotels/find/${id}`);
+  console.log(data)
   const {user} = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Hotel = () => {
   const MILLISECONDS_PER_DAY = 1000*60*60*24;
 
   function dayDifference(date1,date2){
-
+   
     const timeDiff = Math.abs(date2.getTime()-date1.getTime());
     const diffDays = Math.ceil(timeDiff/MILLISECONDS_PER_DAY);
     return diffDays;
@@ -48,7 +48,7 @@ const Hotel = () => {
   };
 
   const handleClick = ()=>{
-
+  
    if(user){
     setOpenModal(true)
    }else{
@@ -94,9 +94,9 @@ const Hotel = () => {
             />
           </div>
         )}
-       {data && <div className="hotelWrapper">
+       <div className="hotelWrapper">
           <button onClick={handleClick} className="bookNow">Reserve or Book Now!</button>
-          <h1 className="hotelTitle">Tower Street Apartments</h1>
+          <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />
             <span>{data.address}</span>
@@ -131,15 +131,16 @@ const Hotel = () => {
                 excellent location score of 9.8!
               </span>
               <h2>
-                <b>₹{totalAmount*options.room}</b> ({TotalDays} nights)
+                <b>₹{totalAmount*options.room}</b> ({TotalDays}{" "} nights)
               </h2>
               <button >Reserve or Book Now!</button>
             </div>
           </div>
-        </div>}
+        </div>
         <MailList />
         <Footer />
-      </div>}
+      </div>
+      }
       {openModal && <Reserve setOpen={setOpenModal} hotelId={id}/> }
     </div>
   );
