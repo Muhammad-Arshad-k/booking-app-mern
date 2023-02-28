@@ -5,8 +5,7 @@ import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFetch from "../../hooks/useFetch";
-import { faCircleArrowLeft, faCircleArrowRight,faCircleXmark,faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowLeft, faCircleArrowRight,faCircleXmark,faLocationDot} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -19,7 +18,7 @@ const Hotel = () => {
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-  const [openModal,setOpenModal] = useState(false)
+  const [openModal,setOpenModal] = useState(false);
 
   const {data,loading,error} = useFetch(`/hotels/find/${id}`);
   console.log(data)
@@ -31,13 +30,11 @@ const Hotel = () => {
   const MILLISECONDS_PER_DAY = 1000*60*60*24;
 
   function dayDifference(date1,date2){
-   
     const timeDiff = Math.abs(date2.getTime()-date1.getTime());
     const diffDays = Math.ceil(timeDiff/MILLISECONDS_PER_DAY);
     return diffDays;
   }
   const todayDate = new Date();
-
   const TotalDays=parseInt(dayDifference(dates[0]?.endDate||todayDate,dates[0]?.startDate||todayDate));
   const Amount =parseInt(TotalDays*data.cheapestPrice);
   const totalAmount = TotalDays*Amount;
