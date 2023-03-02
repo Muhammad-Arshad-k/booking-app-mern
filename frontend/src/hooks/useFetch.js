@@ -19,7 +19,7 @@ const useFetch = (url) =>{
             setLoading(false)
         };
         fetchData(); 
-    },[])  
+    },[url])  
     
     const refetch = async ()=>{
         setLoading(true)
@@ -37,4 +37,4 @@ const useFetch = (url) =>{
     return {data,loading,error,refetch};
 };
 
-export default useFetch
+export default useFetch;
